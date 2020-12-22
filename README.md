@@ -1,2 +1,1 @@
-# pydevsg.github.io
-Coming Soon
+# Sudipto is working on the portfolio :)
