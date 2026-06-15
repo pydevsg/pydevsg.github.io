@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sudipto.dev — building</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="terminal-window">
+
+    <div class="titlebar">
+      <div class="dots">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+      </div>
+      <span class="titlebar-label">sudipto.dev — zsh</span>
+    </div>
+
+    <div class="body">
+
+      <!-- cmd 1 -->
+      <div class="line">
+        <span class="ps1">$</span>
+        <span class="cmd" id="cmd1">sudipto --status</span>
+      </div>
+
+      <!-- status -->
+      <div class="status-line">
+        <span class="dot-green-inline">●</span>
+        <span class="status-name">portfolio.v1</span>
+        <span class="dim">// london, uk</span>
+      </div>
+
+      <!-- progress -->
+      <div class="progress-row">
+        <span class="dim" style="min-width:58px">building</span>
+        <div class="bar-track"><div class="bar-fill" id="bar"></div></div>
+        <span class="dim" id="pct" style="min-width:34px;text-align:right">0%</span>
+      </div>
+
+      <!-- tasks -->
+      <div class="tasks">
+        <div class="task"><span class="arr">↳</span><span class="task-label">Designing Scalable Infra</span><span class="task-dots">.........</span><span class="tag-done">done</span></div>
+        <div class="task"><span class="arr">↳</span><span class="task-label">Building UI Components</span><span class="task-dots">..........</span><span class="tag-done">done</span></div>
+        <div class="task"><span class="arr">↳</span><span class="task-label">Integration Test Execution</span><span class="task-dots">...........</span><span class="tag-run">running</span><span class="spinner" id="spinner">⠋</span></div>
+        <div class="task"><span class="arr">↳</span><span class="task-label">SSL provisioning</span><span class="task-dots">...............</span><span class="tag-queue">queued</span></div>
+      </div>
+
+      <div class="sep"></div>
+
+      <!-- name -->
+      <div class="name-block">
+        <h1 class="name">Sudipto Ghosh</h1>
+        <p class="tagline">Polygot software engineer · cloud infra + ui at scale</p>
+      </div>
+
+      <!-- eta -->
+      <div class="eta-row">
+        <span class="arr-r">→</span>
+        <span class="dim">shipping before GTA VI drops</span>
+        <span class="eta-pill" id="gta-badge">hopefully</span>
+      </div>
+
+      <!-- social -->
+      <div class="social-row">
+        <a href="https://www.linkedin.com/in/sudiptoghosh11/" target="_blank" rel="noopener" class="slink">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Linkedin
+        </a>
+        <a href="https://github.com/pydevsg" target="_blank" rel="noopener" class="slink">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          Github
+        </a>
+        <a href="https://x.com/jsdevsg" target="_blank" rel="noopener" class="slink">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          x
+        </a>
+      </div>
+
+      <div class="sep"></div>
+
+      <!-- pip line -->
+      <div class="line">
+        <span class="ps1">$</span>
+        <span class="cmd" id="cmd2">pip install sudiviz</span>
+      </div>
+      <div class="pip-out">
+        <div><span class="dim">Collecting</span> <span class="green">sudiviz</span></div>
+        <div><span class="dim">  Downloading</span> sudiviz-1.4.3-py3-none-any.whl <span class="dim">(42 kB)</span></div>
+        <div class="pip-bar-row"><span class="pip-bar" id="pip-bar">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class="dim" id="pip-speed">1.2 MB/s</span></div>
+        <div><span class="green">Successfully installed</span> <span class="dim">sudiviz-1.4.3</span></div>
+        <div class="pip-hint"><span class="dim"># X-ray vision for your cloud infrastructure — check it out on </span><a href="https://github.com/pydevsg/sudiviz" target="_blank" rel="noopener" class="green-link">Github ↗</a></div>
+      </div>
+
+      <!-- final cursor -->
+      <!-- <div class="line" style="margin-top:4px">
+        <span class="cursor" id="cursor">▌</span>
+      </div> -->
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
