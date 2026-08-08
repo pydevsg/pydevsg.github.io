@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+.vercel
+.env*.local
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+
+.venv
+graphify-out/cost.json

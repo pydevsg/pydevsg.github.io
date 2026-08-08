@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Accent. One loud colour, two options. `data-accent` lives on <html>.
+   ───────────────────────────────────────────────────────────────────────────── */
+:root,
+[data-accent="acid"] {
+  --accent: #b8ff3a;
+  --accent-soft: rgba(184, 255, 58, 0.12);
+  --accent-line: rgba(184, 255, 58, 0.32);
+}
+
+[data-accent="magenta"] {
+  --accent: #ff3aa5;
+  --accent-soft: rgba(255, 58, 165, 0.12);
+  --accent-line: rgba(255, 58, 165, 0.32);
+}
+
+@theme {
+  --color-bg: #0b0d0e;
+  --color-panel: #101314;
+  --color-panel-2: #14181a;
+  --color-ink: #edeae0;
+  /* Both greys clear 4.5:1 against #0B0D0E — the hierarchy is carried by hue
+     and weight rather than by making small type unreadable. */
+  --color-dim: #9a9a90;
+  --color-dimmer: #82827a;
+  --color-hair: rgba(237, 234, 224, 0.08);
+  --color-hair-strong: rgba(237, 234, 224, 0.16);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-line: var(--accent-line);
+
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, SFMono-Regular,
+    Menlo, monospace;
+  --font-display: var(--font-instrument), "Instrument Serif", Georgia, serif;
+
+  --text-2xs: 0.625rem;
+
+  --animate-blink: blink 1.05s step-end infinite;
+  --animate-flicker: flicker 6s linear infinite;
+  --animate-scan: scan 8s linear infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes flicker {
+  0%, 96%, 100% { opacity: 0.04; }
+  97% { opacity: 0.075; }
+  98% { opacity: 0.025; }
+}
+
+@keyframes scan {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(100vh); }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Base
+   ───────────────────────────────────────────────────────────────────────────── */
+* {
+  border-color: var(--color-hair);
+}
+
+html {
+  background: var(--color-bg);
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scrollbar-color: var(--accent) var(--color-bg);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  line-height: 1.65;
+  font-feature-settings: "ss02" 1, "calt" 1;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: #0b0d0e;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Chunky, terminal-ish scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0d0e;
+  border-left: 1px solid rgba(237, 234, 224, 0.08);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(237, 234, 224, 0.16);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Utilities
+   ───────────────────────────────────────────────────────────────────────────── */
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+}
+
+@utility hairline {
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--color-hair);
+}
+
+/* Text that sits in the accent with a faint glow — used sparingly */
+@utility accent-glow {
+  color: var(--accent);
+  text-shadow: 0 0 18px var(--accent-soft);
+}
+
+/* Hard-edged card: 1px border, zero radius, 2px lift on hover */
+@utility slab {
+  border: 1px solid var(--color-hair);
+  background: linear-gradient(180deg, var(--color-panel) 0%, var(--color-bg) 100%);
+  transition:
+    transform 140ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 140ms linear,
+    background-color 140ms linear;
+}
+
+@utility slab-hover {
+  &:hover {
+    transform: translate(-2px, -2px);
+    border-color: var(--accent-line);
+  }
+}
+
+/* Marching-ants dashed border for "in progress" things */
+@utility ants {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-hair-strong) 0 6px,
+    transparent 6px 12px
+  );
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom left;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   CRT overlay — scanlines + vignette. ~4% opacity. Killed by reduced-motion.
+   ───────────────────────────────────────────────────────────────────────────── */
+.crt {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(237, 234, 224, 0.5) 0px,
+    rgba(237, 234, 224, 0.5) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.04;
+  animation: var(--animate-flicker);
+  mix-blend-mode: screen;
+}
+
+.crt-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 59;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 100% at 50% 45%,
+    transparent 55%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+.crt-beam {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 26vh;
+  z-index: 61;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(237, 234, 224, 0.035),
+    transparent
+  );
+  animation: var(--animate-scan);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .crt,
+  .crt-beam,
+  .crt-vignette {
+    display: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Hide the filmstrip / rail scrollbars without killing keyboard scroll */
+.no-bar {
+  scrollbar-width: none;
+}
+.no-bar::-webkit-scrollbar {
+  display: none;
+}
