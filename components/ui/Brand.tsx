@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Youtube } from "lucide-react";
+import { Github, Linkedin, Youtube } from "lucide-react";
 
 type IconProps = { size?: number; className?: string };
 
@@ -25,7 +25,6 @@ export const BRAND_ICONS = {
   x: XIcon,
   medium: MediumIcon,
   youtube: Youtube,
-  email: Mail,
 } as const;
 
 export type BrandKey = keyof typeof BRAND_ICONS;

@@ -68,7 +68,6 @@ const jsonLd = {
   jobTitle: site.role,
   worksFor: { "@type": "Organization", name: site.company },
   address: { "@type": "PostalAddress", addressLocality: "London", addressCountry: "GB" },
-  email: `mailto:${site.email}`,
   knowsAbout: [...site.stack],
   sameAs: site.socials.map((s) => s.url),
 };

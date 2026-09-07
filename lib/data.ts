@@ -37,17 +37,27 @@ type GhRepo = {
 };
 
 export async function getRepos(): Promise<{ repos: Repo[]; live: boolean }> {
+  const hidden = new Set(site.hiddenRepos.map((n) => n.toLowerCase()));
+  const visibleFallback = site.repoFallback.filter((r) => !hidden.has(r.name.toLowerCase()));
+
   const raw = await json<GhRepo[]>(
     `https://api.github.com/users/${site.handle}/repos?sort=updated&per_page=100`,
     { headers: GH_HEADERS },
   );
 
   if (!Array.isArray(raw) || raw.length === 0) {
-    return { repos: site.repoFallback, live: false };
+    return { repos: visibleFallback, live: false };
   }
 
   const mapped: Repo[] = raw
-    .filter((r) => !r.fork && !r.archived && r.description && r.name !== site.handle)
+    .filter(
+      (r) =>
+        !r.fork &&
+        !r.archived &&
+        r.description &&
+        r.name !== site.handle &&
+        !hidden.has(r.name.toLowerCase()),
+    )
     .map((r) => ({
       name: r.name,
       description: r.description!.trim(),
@@ -57,7 +67,7 @@ export async function getRepos(): Promise<{ repos: Repo[]; live: boolean }> {
       updated: r.pushed_at,
     }));
 
-  if (mapped.length === 0) return { repos: site.repoFallback, live: false };
+  if (mapped.length === 0) return { repos: visibleFallback, live: false };
 
   const pinned = site.pinnedRepos
     .map((name) => mapped.find((r) => r.name.toLowerCase() === name.toLowerCase()))

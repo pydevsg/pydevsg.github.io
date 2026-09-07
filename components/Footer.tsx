@@ -1,7 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "./ui/Container";
 import { PromptLine } from "./ui/Prompt";
-import { CopyChip } from "./ui/CopyChip";
 import { AccentToggle } from "./AccentToggle";
 import { BRAND_ICONS, type BrandKey } from "./ui/Brand";
 import { site } from "@/site.config";
@@ -12,22 +11,18 @@ export function Footer() {
   return (
     <footer id="contact" className="relative scroll-mt-20 border-t border-hair pt-16 pb-28">
       <Container>
-        <PromptLine path="contact" cmd="mail -s 'hello' sudipto" />
+        <PromptLine path="contact" cmd="open --socials" />
 
         <div className="mt-6 grid grid-cols-4 gap-x-6 gap-y-10 md:grid-cols-12">
           <div className="col-span-4 md:col-span-7">
             <h2 className="display text-[clamp(2.5rem,8vw,5rem)] text-ink">
               say something
             </h2>
-            <CopyChip
-              value={site.email}
-              label="email address"
-              className="mt-4 text-sm text-dim sm:text-base"
-            >
-              <span className="border-b border-hair pb-0.5">{site.email}</span>
-            </CopyChip>
+            <p className="mt-4 max-w-[44ch] text-sm text-dim sm:text-base">
+              linkedin, github, or x. pick a handle.
+            </p>
             <p className="mt-3 max-w-[44ch] text-2xs text-dimmer">
-              click the address to copy it. replies are faster than a cold start.
+              replies are faster than a cold start.
             </p>
           </div>
 

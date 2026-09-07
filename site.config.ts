@@ -6,7 +6,8 @@
  */
 
 export type Accent = "acid" | "magenta";
-export type WorkTag = "infra" | "ui" | "data" | "oss";
+export type WorkTag = "infra" | "ui" | "data" | "oss" | "startup";
+export type EventKind = "talk" | "hackathon";
 
 export type WorkItem = {
   id: string;
@@ -23,11 +24,13 @@ export type WorkItem = {
 export type EventItem = {
   id: string;
   name: string;
+  /** What was presented, built, or placed. */
   talk: string;
   place: string;
   flag: string;
   when: string;
   status: "upcoming" | "past";
+  kind?: EventKind;
   url: string | null;
   /** Text on the outbound link, e.g. "recap". */
   urlLabel?: string;
@@ -68,16 +71,14 @@ export const site = {
   name: "Sudipto Ghosh",
   handle: "pydevsg",
   location: "London, UK",
-  role: "Software Engineer II",
-  company: "J.P. Morgan Chase",
+  role: "Fullstack plus SRE",
+  company: "JPMorgan Chase",
 
   /** His voice. Do not sand these down. */
   tagline: "polyglot software engineer · cloud infra + ui at scale",
   subline: "shipping before GTA VI drops",
   sublineStates: ["hopefully", "maybe?", "probably", "fingers crossed", "soon™", "we'll see"],
   motto: "Code and contribute until the goal is reached",
-
-  email: "sudiptoghosh1129@gmail.com",
 
   socials: [
     { key: "github", label: "github", handle: "pydevsg", url: "https://github.com/pydevsg" },
@@ -202,16 +203,76 @@ export const site = {
     {
       id: "books4u",
       title: "Books4U",
-      org: "founder",
-      role: "founder",
+      org: "Books4u JGEC",
+      role: "co-founder",
       period: "2018 – 2020",
       location: "Jalpaiguri, India",
-      tags: ["ui", "data"] as WorkTag[],
-      summary: "Second-hand college textbook marketplace. 25,000+ transactions, 10+ colleges, $100K revenue.",
+      tags: ["startup", "ui", "data"] as WorkTag[],
+      summary: "Campus marketplace for second-hand academic books. 25,000+ transactions, 10+ colleges, $100K revenue.",
       bullets: [
-        "25,000+ transactions",
-        "10+ colleges on the network",
+        "buy / sell textbooks inside the college network",
+        "25,000+ transactions · 10+ colleges",
         "$100K revenue before graduating",
+      ],
+    },
+    {
+      id: "hipla",
+      title: "Sentinel",
+      org: "Hipla",
+      role: "full stack engineer",
+      period: "2020",
+      location: "Singapore / remote",
+      tags: ["startup", "ui"] as WorkTag[],
+      summary: "Contactless visitor management for multi-building campuses. Built Sentinel for the National University of Singapore.",
+      bullets: [
+        "mern: mongodb · express · react · node",
+        "multi-department / multi-building check-in",
+        "jul – sep 2020",
+      ],
+    },
+    {
+      id: "kawa",
+      title: "Kawa Space",
+      org: "Kawa Space",
+      role: "back end developer",
+      period: "2020",
+      location: "Delhi / remote",
+      tags: ["startup", "infra"] as WorkTag[],
+      summary: "Cloud functions and an automated mailing system for a space-infra startup.",
+      bullets: [
+        "node · express · docker · gcp · sendgrid",
+        "cloud functions shipped to google cloud",
+        "apr – may 2020",
+      ],
+    },
+    {
+      id: "decision-fiction",
+      title: "Decision Fiction",
+      org: "Decision Fiction",
+      role: "full stack developer",
+      period: "2019",
+      location: "remote",
+      tags: ["startup", "ui", "data"] as WorkTag[],
+      summary: "Microservices backend and Angular frontend for a media-production web app.",
+      bullets: [
+        "moleculer.js services behind nginx",
+        "angular 6 client · mongodb",
+        "sep – oct 2019",
+      ],
+    },
+    {
+      id: "apsolutio",
+      title: "Finakya",
+      org: "Apsolutio",
+      role: "mean stack intern",
+      period: "2019",
+      location: "Kolkata, India",
+      tags: ["startup", "ui"] as WorkTag[],
+      summary: "Internship: regex playground from scratch, then Finkaya — an expense and budget tracker.",
+      bullets: [
+        "mean stack, start to finish",
+        "finkaya.com — budgets that actually tracked",
+        "jun – aug 2019",
       ],
     },
   ],
@@ -259,6 +320,9 @@ export const site = {
 
   /** Pinned to the front of the repo grid, in this order. */
   pinnedRepos: ["sudiviz", "meetify", "Bank-Filter-App"],
+
+  /** Kept on GitHub, omitted from the projects grid. */
+  hiddenRepos: ["angular8_login_signup", "js_interviews", "node_express_mongo_authentication"],
 
   /** Shown if api.github.com is rate-limited or down. Mirrors the live shape. */
   repoFallback: <Repo[]>[
@@ -358,6 +422,43 @@ export const site = {
         },
       ],
     },
+    {
+      id: "code-for-good-2020",
+      name: "Code for Good",
+      talk: "the offer",
+      place: "JPMorgan Chase · EMEA (virtual)",
+      flag: "🇬🇧",
+      when: "oct 2020",
+      status: "past" as const,
+      kind: "hackathon" as const,
+      url: "https://jsdevsg.medium.com/jpmorgan-chase-interview-experience-code-for-good-hackathon-44aa176a0d88",
+      urlLabel: "the write-up",
+      note: "first international hackathon. 24 hours with four nonprofits. the winning lane became a glasgow sde offer.",
+    },
+    {
+      id: "devfest-siliguri",
+      name: "GDG DevFest Siliguri",
+      talk: "runners-up",
+      place: "Siliguri, India",
+      flag: "🇮🇳",
+      when: "2019",
+      status: "past" as const,
+      kind: "hackathon" as const,
+      url: null,
+      note: "google developer group hackathon. second place, first all-nighter that counted.",
+    },
+    {
+      id: "bengalathon-2019",
+      name: "Bengalathon",
+      talk: "finalist",
+      place: "West Bengal, India",
+      flag: "🇮🇳",
+      when: "2019",
+      status: "past" as const,
+      kind: "hackathon" as const,
+      url: null,
+      note: "state-run hackathon. made the final cut among college teams across bengal.",
+    },
   ],
 
   /** ─── Gallery. Drop files in public/gallery/ and point src at them. ────── */
@@ -411,12 +512,12 @@ export const site = {
   about: {
     line: "away from the terminal",
     body:
-      "Competitive quizzer — the kind who argues about the answer after the buzzer. Plays table tennis with more confidence than backhand. Owns a guitar and, occasionally, plays it. Got this job through a hackathon, which is still the best deploy story he has.",
+      "National-level quizzer — represented JGEC at district and state, then kept showing up on the circuit. District gold (DM & DEO, Jalpaiguri). State silver (CEO, West Bengal). Still argues with the buzzer after the score is read. Music when the laptop is closed — guitar, mostly, unamplified. Sports when the wrists need a different kind of damage: table tennis first, anything with a scoreboard second. Fifty-plus hackathons as a participant or mentor; Code for Good is the one that hired him.",
     /** icon ∈ trophy | ball | guitar (see components/About.tsx) */
     interests: [
-      { icon: "trophy", label: "quizzing", note: "buzzer first, think later" },
-      { icon: "ball", label: "table tennis", note: "forehand only, sadly" },
-      { icon: "guitar", label: "guitar", note: "four chords, high conviction" },
+      { icon: "trophy", label: "quizzing", note: "national circuit · state #2 · district #1" },
+      { icon: "ball", label: "sports", note: "table tennis, contested" },
+      { icon: "guitar", label: "music", note: "guitar, high conviction" },
     ],
   },
 

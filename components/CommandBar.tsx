@@ -68,16 +68,6 @@ export function CommandBar() {
         },
       },
       {
-        id: "mail",
-        label: "email sudipto",
-        hint: site.email,
-        kind: "action",
-        run: () => {
-          void navigator.clipboard?.writeText(site.email);
-          return `copied → ${site.email}`;
-        },
-      },
-      {
         id: "accent",
         label: "toggle accent",
         hint: "acid green ⇄ hot magenta",

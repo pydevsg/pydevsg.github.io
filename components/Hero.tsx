@@ -25,7 +25,7 @@ export function Hero() {
             <span>{site.location.toLowerCase()}</span>
             <span className="text-dimmer">·</span>
             <span>
-              {site.role.toLowerCase()} @ {site.company}
+              {site.role} @ {site.company}
             </span>
           </div>
 

@@ -14,6 +14,7 @@ const FILTERS: { id: WorkTag | "all"; label: string }[] = [
   { id: "ui", label: "ui" },
   { id: "data", label: "data" },
   { id: "oss", label: "oss" },
+  { id: "startup", label: "startup" },
 ];
 
 export function Work() {
@@ -41,7 +42,7 @@ export function Work() {
           path="work"
           cmd={`ls --tag=${active}`}
           title="work"
-          kicker="six years of shipping. one of them paid for by a hackathon."
+          kicker="jpmc, internships, a campus startup. one of them paid for by a hackathon."
         />
 
         <div className="mt-6 flex flex-wrap items-center justify-between gap-4">

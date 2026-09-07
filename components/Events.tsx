@@ -15,13 +15,14 @@ export function Events() {
           index="05"
           path="events"
           cmd="cat events.ts"
-          title="talks"
-          kicker="one config file. append to site.config.ts → events and it shows up here."
+          title="talks & hacks"
+          kicker="rooms that heard him. nights that hired him. fifty-plus on the circuit."
         />
 
         <ul className="mt-6 border border-hair">
           {site.events.map((e, i) => {
             const upcoming = e.status === "upcoming";
+            const kind = e.kind ?? "talk";
             const Wrapper = e.url ? "a" : "div";
             return (
               <li key={e.id} className={cn(i > 0 && "border-t border-hair")}>
@@ -48,6 +49,11 @@ export function Events() {
                         {e.status}
                       </span>
                       <span className="tabular text-2xs text-dim">{e.when}</span>
+                      {kind === "hackathon" && (
+                        <span className="border border-hair px-2 py-0.5 text-2xs uppercase tracking-[0.12em] text-dim">
+                          hackathon
+                        </span>
+                      )}
                     </div>
 
                     <h3
@@ -65,7 +71,8 @@ export function Events() {
                     </p>
 
                     <p className="mt-4 text-xs text-dim">
-                      talk: <span className="text-accent">{e.talk}</span>
+                      {kind === "hackathon" ? "place" : "talk"}:{" "}
+                      <span className="text-accent">{e.talk}</span>
                     </p>
                     <p className="mt-1 text-2xs text-dimmer">{e.note}</p>
 
@@ -110,7 +117,9 @@ export function Events() {
         </ul>
 
         <p className="mt-3 text-2xs text-dimmer">
-          {site.events.length} talks · photos live in public/talks/
+          {site.events.filter((e) => (e.kind ?? "talk") === "talk").length} talks ·{" "}
+          {site.events.filter((e) => e.kind === "hackathon").length} hackathons · photos in
+          public/talks/
         </p>
       </Container>
     </section>
